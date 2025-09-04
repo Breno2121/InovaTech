@@ -1,8 +1,64 @@
-import styles from "./styles.module.css"
+"use client";
+import { useState } from "react";
+import styles from "./styles.module.css";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
+export default function LoginPage() {
+  const [user, setUser] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
-export default function Home() {
+  const router = useRouter();
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    try {
+      const loginUrl = "http://localhost:3000/login";
+
+      const response = await axios.post(loginUrl, {
+        email: user,
+        password,
+      });
+
+      localStorage.setItem("access_token", response.data.access_token);
+      router.push("/dashboard");
+    } catch (error) {
+      alert("Erro ao fazer login");
+      console.error(error);
+    }
+  }
+
   return (
-    <h1>Login</h1>
+    <div className={styles.wrapper}>
+      <form onSubmit={handleSubmit}> {}
+        <h1 className={styles.heading}>Welcome back ;)</h1>
+
+        <div className={styles.inputBox}>
+          <input
+            type="text"
+            placeholder="Username"
+            required
+            value={user}
+            onChange={(e) => setUser(e.target.value)} 
+          />
+          <i className="bx bxs-user"></i>
+        </div>
+
+        <div className={styles.inputBox}>
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)} 
+          />
+          <i className="bx bxs-lock-alt"></i>
+        </div>
+
+        <button type="submit" className={styles.btn}>
+          Login
+        </button>
+      </form>
+    </div>
   );
 }
