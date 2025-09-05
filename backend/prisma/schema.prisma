@@ -6,14 +6,36 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 model User {
-  id        String   @id
+  id        String    @id
   name      String
-  email     String   @unique
+  email     String    @unique
   password  String
   createdAt DateTime
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime  @updatedAt
+  Chamado   Chamado[]
 
   @@map("users")
 }
 
+model Client {
+  id    String @id
+  name  String
+  email String @unique
+
+  @@map("client")
+}
+
+model Chamado {
+  id        String
+  titulo    String
+  descricao String
+  status    String
+  clientId  String
+  client    User    @relation(fields: [clientId], references: [id])
+  createdAt DateTime
+
+  @@id([id, clientId])
+  @@map("chamado")
+}
