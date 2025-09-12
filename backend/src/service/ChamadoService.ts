@@ -1,0 +1,33 @@
+import { Chamado } from "@prisma/client";
+import { prisma } from "../prisma/client";
+
+
+class ChamadoService {
+    public async register({ titulo, descricao, status, clientId }: CreateChamadoType): Promise<void> {
+        
+            const chamado: Chamado = {
+              id: crypto.randomUUID(),
+              titulo,
+              descricao,
+              status,
+              clientId,
+              createdAt: new Date()
+            };
+        
+            await prisma.chamado.create({
+              data: chamado,
+            });
+    }
+
+    public async getAllChamados() {
+        const chamados = await prisma.chamado.findMany({
+            include: {
+                    client: true,    
+                },
+        });
+        return chamados;
+    }
+}
+
+
+export const chamadoService = new ChamadoService();
