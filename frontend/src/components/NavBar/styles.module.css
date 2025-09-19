@@ -1,63 +1,68 @@
 .container {
-    width: 250px;
-    min-height: 835px;
-    height: 100vh;
-    background-color: #121212;
-    border-radius: 0 0 12px 0;
-    color: white;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 30px 20px;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.4);
-    margin-right: 6px;
+    justify-content: space-between;
+    background: #111827;
+    padding: 20px 50px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+
+.logoArea {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logoArea img {
+    width: 140px;
+    height: auto;
+    object-fit: contain; 
 }
 
 .content {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    margin-top: 40px;
+    gap: 2rem; /* = 32px */
 }
 
-.item {
+.content a {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    border-radius: 8px;
+    gap: 0.5rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #d1d5db;
     text-decoration: none;
-    font-size: 1.1em;
-    color: white;
-    transition: background-color 0.3s ease;
+    transition: all 0.3 ease;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
 }
 
-.item:hover {
-    background-color: #007bff;
-    color: white;
+content a:hover {
+    background: #2563eb;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
 }
 
 .selected {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
+    background: #2563eb;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
 }
 
-.selected svg {
-    color: white;
+.selected:hover {
+    background: #1d4ed8;
 }
 
-.logoArea {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
+.content {
+    flex-direction: row;
+    width: 50%;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
-.logoArea img {
-    width: 200px;
-    height: auto;
-    object-fit: contain;
-    border-radius: 10px;
-    padding: 5px;
+.content a {
+    width: 50%;
+    justify-content: flex-start;
 }
+

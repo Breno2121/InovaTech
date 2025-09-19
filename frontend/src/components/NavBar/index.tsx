@@ -3,7 +3,9 @@ import Link from "next/link"
 import styles from "./styles.module.css"
 import { usePathname } from "next/navigation"
 import { FaHome } from "react-icons/fa";
-import logo from '../../app/assets/inovatech.png'
+import { BsPersonRaisedHand } from "react-icons/bs";
+import { LuTicketSlash } from "react-icons/lu";
+import logo from '../../app/assets/inovaTech.png'
 import Image from 'next/image'
 
 export default function NavMenu() {
@@ -18,7 +20,13 @@ export default function NavMenu() {
         },
         {
             label: "Atendimento",
-            page: '/'
+            page: '/atendimento',
+            icon: <LuTicketSlash />
+        },
+        {
+            label: "Cliente",
+            page: '/cliente',
+            icon: <BsPersonRaisedHand />
         }
     ]
 
