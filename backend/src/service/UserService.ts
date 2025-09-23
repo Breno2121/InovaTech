@@ -47,6 +47,12 @@ class UserService {
             updatedAt: user.updatedAt
         });
     }
+
+    public async getAllUsers() {
+        const users = await prisma.user.findMany({})
+        return users;
+    }
+
 }
 
 export const userService = new UserService();

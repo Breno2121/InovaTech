@@ -28,14 +28,13 @@ model Client {
 }
 
 model Chamado {
-  id        String
+  id        String   @id
   titulo    String
   descricao String
   status    String
   clientId  String
-  client    User    @relation(fields: [clientId], references: [id])
+  client    User     @relation(fields: [clientId], references: [id])
   createdAt DateTime
 
-  @@id([id, clientId])
   @@map("chamado")
 }

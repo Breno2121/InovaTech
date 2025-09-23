@@ -1,8 +1,6 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { chamadoService } from "../service/ChamadoService";
 
-
-
 export async function chamadoController(app: FastifyInstance) {
     app.post("/chamado/register", async (request: FastifyRequest, reply: FastifyReply) => {
         const body = request.body as CreateChamadoType;
@@ -19,6 +17,16 @@ export async function chamadoController(app: FastifyInstance) {
         try {
             const chamados = await chamadoService.getAllChamados();
             return reply.code(200).send(chamados);
+        } catch (error: any) {
+            return reply.code(401).send({ erro: error.message })
+        }
+    })
+
+    app.get("/chamado/busca/:id", async (request: FastifyRequest, reply: FastifyReply) => {
+        const { id } = request.params as { id: string }
+        try {
+            const chamado = await chamadoService.getChamadoId(id);
+            return reply.code(200).send(chamado);
         } catch (error: any) {
             return reply.code(401).send({ erro: error.message })
         }

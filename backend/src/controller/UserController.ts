@@ -26,4 +26,13 @@ export async function userController(app: FastifyInstance) {
         }
     })
 
+    app.get("/user/busca", async (request: FastifyRequest, reply: FastifyReply) => {
+            try {
+                const users = await userService.getAllUsers();
+                return reply.code(200).send(users);
+            } catch (error: any) {
+                return reply.code(401).send({ erro: error.message })
+            }
+        })
+
 }
