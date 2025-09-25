@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import { FaHome } from "react-icons/fa";
 import { BsPersonRaisedHand } from "react-icons/bs";
 import { LuTicketSlash } from "react-icons/lu";
-import logo from '../../app/assets/inovaTech.png'
+import logo from '../../assets/inovatech.png'
 import Image from 'next/image'
 
 export default function NavMenu() {
