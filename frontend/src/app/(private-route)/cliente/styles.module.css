@@ -1,0 +1,93 @@
+.container {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 2px solid #ddd;
+    background: #f9f9f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.titulo {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+.form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.form input {
+    flex: 1; /*para ocupar todo espaço que pode*/
+    padding: 8px;
+    border: 8px;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+}
+
+.form button {
+    padding: 8px 12px;
+    background: #0070f3;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form button:hover {
+    background: #005bb5;
+}
+
+.lista {
+    list-style: none; /*remove os marcadores (pontos, números, etc.) padrão de elementos de lista*/
+    padding: 0px;
+    margin: 0px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.acoes {
+    display: flex;
+    gap: 5px;
+}
+
+.btnEditar {
+    background: #f1c40f;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.btnEditar:hover {
+    background: #d4ac0d;
+}
+
+.btnExcluir{
+    background: #e74c3c;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffffff
+}
+
+.btnExcluir:hover {
+    background: #c0392b;
+}
+
+.nomesC {
+    color: #000000;
+}

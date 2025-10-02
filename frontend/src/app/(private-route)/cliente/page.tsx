@@ -1,5 +1,78 @@
-export default function Clients() {
+'use client';
+import { useState } from "react";
+import styles from "./styles.module.css";
+
+export default function ClientesPage() {
+    const [clientes, setClientes] = useState([
+        { id: 1, nome: "Maria", email: "maria@email.com" },
+        { id: 2, nome: "João", email: "joao@email.com" },
+    ]);
+
+    const [nome, setNome] = useState("");
+    const [email, setEmail] = useState("");
+    const [editandoId, setEditandoId] = useState<number | null>(null);
+
+    function salvar() {
+        if (editandoId) {
+            setClientes(clientes.map(c =>
+                c.id === editandoId ? { id: c.id, nome, email } : c
+            ));
+            setEditandoId(null);
+        } else {
+            const novo = { id: Date.now(), nome, email };
+            setClientes([...clientes, novo]);
+        }
+        setNome("");
+        setEmail("");
+    }
+
+    function editar(cliente: any) {
+        setNome(cliente.nome);
+        setEmail(cliente.email);
+        setEditandoId(cliente.id);
+    }
+
+    function excluir(id: number) {
+        setClientes(clientes.filter(c => c.id !== id));
+    }
+
     return (
-        <h1>Clients</h1>
-    )
+        <div className={styles.container}>
+            <h1 className={styles.titulo}>CRUD de Clientes</h1>
+
+            <div className={styles.form}>
+                <input
+                    type="text"
+                    placeholder="Nome"
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
+                />
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <button onClick={salvar}>
+                    {editandoId ? "Atualizar" : "Adicionar"}
+                </button>
+            </div>
+
+            <ul className={styles.lista}>
+                {clientes.map((c) => (
+                    <li key={c.id} className={styles.item}>
+                        <span className={styles.nomesC}>{c.nome} - {c.email}</span>
+                        <div className={styles.acoes}>
+                            <button onClick={() => editar(c)} className={styles.btnEditar}>
+                                Editar
+                            </button>
+                            <button onClick={() => excluir(c.id)} className={styles.btnExcluir}>
+                                Excluir
+                            </button>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 }
