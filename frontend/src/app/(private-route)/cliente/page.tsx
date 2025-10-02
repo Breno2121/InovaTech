@@ -12,8 +12,8 @@ export default function ClientesPage() {
 
     function salvar() {
         if (editandoId) {
-            setClientes(clientes.map(c =>
-                c.id === editandoId ? { id: c.id, nome, email } : c
+            setClientes(clientes.map(cliente =>
+                cliente.id === editandoId ? { id: cliente.id, nome, email } : cliente
             ));
             setEditandoId(null);
         } else {
@@ -31,7 +31,7 @@ export default function ClientesPage() {
     }
 
     function excluir(id: number) {
-        setClientes(clientes.filter(c => c.id !== id));
+        setClientes(clientes.filter(cliente => cliente.id !== id));
     }
 
     return (
@@ -57,14 +57,14 @@ export default function ClientesPage() {
             </div>
 
             <ul className={styles.lista}>
-                {clientes.map((c) => (
-                    <li key={c.id} className={styles.item}>
-                        <span className={styles.nomesC}>{c.nome} - {c.email}</span>
+                {clientes.map((cliente) => (
+                    <li key={cliente.id} className={styles.item}>
+                        <span className={styles.nomesC}>{cliente.nome} - {cliente.email}</span>
                         <div className={styles.acoes}>
-                            <button onClick={() => editar(c)} className={styles.btnEditar}>
+                            <button onClick={() => editar(cliente)} className={styles.btnEditar}>
                                 Editar
                             </button>
-                            <button onClick={() => excluir(c.id)} className={styles.btnExcluir}>
+                            <button onClick={() => excluir(cliente.id)} className={styles.btnExcluir}>
                                 Excluir
                             </button>
                         </div>
