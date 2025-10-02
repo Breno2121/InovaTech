@@ -3,10 +3,8 @@ import { useState } from "react";
 import styles from "./styles.module.css";
 
 export default function ClientesPage() {
-    const [clientes, setClientes] = useState([
-        { id: 1, nome: "Maria", email: "maria@email.com" },
-        { id: 2, nome: "João", email: "joao@email.com" },
-    ]);
+    const [clientes, setClientes] = useState<any[]>([]);
+
 
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
