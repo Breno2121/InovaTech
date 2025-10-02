@@ -5,12 +5,12 @@ import { usePathname } from "next/navigation"
 import { FaHome } from "react-icons/fa";
 import { BsPersonRaisedHand } from "react-icons/bs";
 import { LuTicketSlash } from "react-icons/lu";
+import { MdOutlinePhone } from "react-icons/md";
 import logo from '../../assets/inovatech.png'
 import Image from 'next/image'
 
 export default function NavMenu() {
     const pathName = usePathname();
-
     
     const itens = [
         {
@@ -27,11 +27,13 @@ export default function NavMenu() {
             label: "Cliente",
             page: '/cliente',
             icon: <BsPersonRaisedHand />
+        },
+        {
+            label: "Chamado",
+            page: '/chamado',
+            icon: <MdOutlinePhone />
         }
     ]
-
-
-
     return (
         <div className={styles.container}>
             <div className={styles.logoArea}>

@@ -1,4 +1,3 @@
-
 import { User } from "@prisma/client";
 import { prisma } from "../prisma/client";
 import { compare, hash } from "bcryptjs";
