@@ -21,8 +21,8 @@ class ChamadoService {
     public async getAllChamados() {
         const chamados = await prisma.chamado.findMany({
             include: {
-                    client: true,    
-                },
+                    client: true 
+                }
         });
         return chamados;
     }
