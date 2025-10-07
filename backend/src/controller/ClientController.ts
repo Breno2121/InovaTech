@@ -34,7 +34,7 @@ export function clientController(app: FastifyInstance) {
         }
     })
 
-    app.patch("/cliente/busca/:id", async (request: FastifyRequest, reply: FastifyReply) => {
+    app.patch("/cliente/update/:id", async (request: FastifyRequest, reply: FastifyReply) => {
         const { id } = request.params as { id: string }
         const { name, email } = request.body as { name: string, email: string }
 

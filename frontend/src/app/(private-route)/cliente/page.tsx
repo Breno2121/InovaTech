@@ -40,39 +40,29 @@ export default function ClientesPage() {
     }
   }
 
+  async function updateClient() {
+    if (!editingId) return;
 
-async function updateClient() {
-  if (!editingId) return;
+    const updatedClient = { name, email };
 
-  const updateClient = { name, email };
-
-  try {
-    await API.patch(`/cliente/busca/${editingId}`, updateClient);
-    setEditingId(null);
-    setName("");
-    setEmail("");
-    loadClients();
-  } catch (error) {
-    console.error("Erro ao atualizar cliente:", error);
+    try {
+      await API.patch(`/cliente/update/${editingId}`, updatedClient);
+      setEditingId(null);
+      setName("");
+      setEmail("");
+      loadClients();
+    } catch (error) {
+      console.error("Erro ao atualizar cliente:", error);
+    }
   }
-}
 
-//   async function updateClient(client: Client) {
-//     const updateClient = {
-//       name: name,
-//       email: email,
-//     };
+  function startEditing(client: Client) {
+    setEditingId(client.id);
+    setName(client.name);
+    setEmail(client.email);
+  }
 
-//     if (editingId) {
-//       await API.patch(`/cliente/busca/${client.id}`, updateClient);
-//       setEditingId(null);
-//     } else {
-//       console.log("parou aqui!!!!!!");
-//     }
-//     loadClients();
-//   }
-
-async function excluir(id: string) {
+  async function excluir(id: string) {
     try {
       await API.delete(`/cliente/delete/${id}`);
       loadClients();
@@ -83,7 +73,7 @@ async function excluir(id: string) {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.titulo}>CRUD de Clients</h1>
+      <h1 className={styles.titulo}>CRUD de Clientes</h1>
 
       <div className={styles.form}>
         <input
@@ -98,7 +88,7 @@ async function excluir(id: string) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button onClick={register}>
+        <button onClick={editingId ? updateClient : register}>
           {editingId ? "Atualizar" : "Adicionar"}
         </button>
       </div>
@@ -110,12 +100,12 @@ async function excluir(id: string) {
               {client.name} - {client.email}
             </span>
             <div className={styles.acoes}>
-              <button onClick={() => updateClient( )}
+              <button
+                onClick={() => startEditing(client)}
                 className={styles.btnEditar}
-                >
+              >
                 Editar
               </button>
-
               <button
                 onClick={() => excluir(client.id)}
                 className={styles.btnExcluir}
