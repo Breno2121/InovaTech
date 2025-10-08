@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./styles.module.css";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { TbPhoneRinging } from "react-icons/tb";
 
 export default function LoginPage() {
   const [user, setUser] = useState<string>("");
@@ -27,39 +28,38 @@ export default function LoginPage() {
       console.error(error);
     }
   }
-
-  
   return (
-    <div className={styles.wrapper}>
-      <form onSubmit={handleSubmit}> {}
-        <h1 className={styles.heading}>Welcome back ;)</h1>
-
-        <div className={styles.inputBox}>
-          <input
-            type="text"
-            placeholder="Username"
-            required
-            value={user}
-            onChange={(e) => setUser(e.target.value)} 
-          />
-          <i className="bx bxs-user"></i>
-        </div>
-
-        <div className={styles.inputBox}>
-          <input
-            type="password"
-            placeholder="Password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)} 
-          />
-          <i className="bx bxs-lock-alt"></i>
-        </div>
-
-        <button type="submit" className={styles.btn}>
-          Login
-        </button>
-      </form>
-    </div>
+      <div className={styles.wrapper}>
+        <form onSubmit={handleSubmit}>
+          {" "}
+          {}
+          <h1 className={styles.heading}>
+            InovaTech <TbPhoneRinging />
+          </h1>
+          <div className={styles.inputBox}>
+            <input
+              type="text"
+              placeholder="Username"
+              required
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
+            />
+            <i className="bx bxs-user"></i>
+          </div>
+          <div className={styles.inputBox}>
+            <input
+              type="password"
+              placeholder="Password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <i className="bx bxs-lock-alt"></i>
+          </div>
+          <button type="submit" className={styles.btn}>
+            Login
+          </button>
+        </form>
+      </div>
   );
 }
