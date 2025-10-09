@@ -6,6 +6,7 @@ import { swaggerConfig } from "./config/swagger";
 import { userController } from "./controller/UserController";
 import authJwt from "./middleware/authJwt";
 import { chamadoController } from "./controller/ChamadoController";
+import { clientController } from "./controller/ClientController";
 
 const app = fastify();
 
@@ -20,6 +21,7 @@ app.register(fastifySwaggerUi, { routePrefix: '/docs', uiConfig: { docExpansion:
 app.register(authJwt)
 app.register(userController)
 app.register(chamadoController)
+app.register(clientController)
 
 const PORT = 3333;
 app.listen({ port: PORT }).then(() => {

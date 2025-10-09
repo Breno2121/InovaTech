@@ -1,4 +1,5 @@
 .container {
+<<<<<<< HEAD
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
@@ -48,3 +49,47 @@
   .button:hover {
     background: #005bb5;
   }
+=======
+  padding: 2rem;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.cardDescription {
+  font-size: 1rem;
+  color: #555;
+}
+>>>>>>> 202a388688fb2f3e6630f69e3429836d1f16c514
