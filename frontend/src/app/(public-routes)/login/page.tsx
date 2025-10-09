@@ -32,7 +32,7 @@ export default function LoginPage() {
   return (
     <div className={styles.wrapper}>
       <form onSubmit={handleSubmit}> {}
-        <h1 className={styles.heading}>Welcome back ;)</h1>
+        <h1 className={styles.heading}>Welcome back ;</h1>
 
         <div className={styles.inputBox}>
           <input
