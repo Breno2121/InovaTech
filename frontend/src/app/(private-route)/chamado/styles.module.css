@@ -1,5 +1,4 @@
 .container {
-<<<<<<< HEAD
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
@@ -48,8 +47,6 @@
   
   .button:hover {
     background: #005bb5;
-  }
-=======
   padding: 2rem;
   background: #f5f7fa;
   min-height: 100vh;
@@ -92,4 +89,3 @@
   font-size: 1rem;
   color: #555;
 }
->>>>>>> 202a388688fb2f3e6630f69e3429836d1f16c514
