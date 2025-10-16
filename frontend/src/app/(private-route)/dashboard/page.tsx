@@ -25,14 +25,15 @@ const data = [
 
 const COLORS = ["#ef4444", "#22c55e", "#3b82f6", "#eab308"];
 
-return (
+const Dashboard = () => {
   const total = data.reduce((sum, d) => sum + d.quantidade, 0);
-   <div className="p-8 min-h-screen bg-gray-50 space-y-10">
+
+  return (
+    <div className="p-8 min-h-screen bg-gray-50 space-y-10">
       <h1 className="text-4xl font-bold text-gray-800 text-center">
         Dashboard de Manutenção
       </h1>
 
-      {/* Cards de resumo */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {data.map((item, index) => (
           <motion.div
@@ -52,9 +53,8 @@ return (
         ))}
       </div>
 
-      {/* Gráficos */}
-      <div className={styles.chartsGrid}>
-        {/* Gráfico de Barras */}
+      
+      <div className={styles.chartsGrid}>  
         <div className={styles.chartCard}>
           <h2 className={styles.chartTitle}>Distribuição por Tipo</h2>
           <BarChart width={400} height={300} data={data} className="mx-auto">
@@ -64,13 +64,12 @@ return (
             <Tooltip />
             <Bar dataKey="quantidade" fill="#3b82f6">
               {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                <Cell key={`cell-bar-${index}`} fill={COLORS[index]} />
               ))}
             </Bar>
           </BarChart>
         </div>
 
-        {/* Gráfico de Pizza */}
         <div className={styles.chartCard}>
           <h2 className={styles.chartTitle}>Percentual de Manutenções</h2>
           <PieChart width={400} height={300} className="mx-auto">
@@ -82,11 +81,11 @@ return (
               cy="50%"
               outerRadius={100}
               label={({ tipo, quantidade }) =>
-                `${tipo} (${((quantidade / total) * 100).toFixed(1)}%)`
+                `${tipo} (${((total) * 100).toFixed(1)}%)`
               }
             >
               {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                <Cell key={`cell-pie-${index}`} fill={COLORS[index]} />
               ))}
             </Pie>
             <Tooltip />
@@ -96,5 +95,6 @@ return (
       </div>
     </div>
   );
-}
+};
 
+export default Dashboard;
