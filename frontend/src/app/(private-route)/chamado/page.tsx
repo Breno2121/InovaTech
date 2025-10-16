@@ -52,7 +52,6 @@ export default function Chamados() {
       setShowModal(false);
       await loadChamados();
 
-      // Limpa campos
       setTitulo("");
       setDescricao("");
       setStatus("aberto");
@@ -90,7 +89,6 @@ export default function Chamados() {
         )}
       </div>
 
-      {/* MODAL */}
       {showModal && (
         <div className={styles.modalOverlay} onClick={() => setShowModal(false)}>
           <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
