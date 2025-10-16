@@ -1,9 +1,10 @@
 "use client";
 import { API } from "@/service/api";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
 
-interface chamado {
+interface Chamado {
   id: string;
   titulo: string;
   descricao: string;
@@ -14,6 +15,10 @@ interface chamado {
 export default function Chamados() {
   const [chamado, setChamado] = useState<chamado[]>([]);
   const [newChamado, setNewChamado] = useState<chamado[]>([]);
+  const [titulo, setTitulo] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [chamados, setChamados] = useState<Chamado[]>([]);
+
   useEffect(() => {
     loadChamados();
   }, []);
@@ -21,11 +26,44 @@ export default function Chamados() {
   async function loadChamados() {
     try {
       const response = await API.get("/chamado/busca");
-
       console.log("Dados recebidos da API:", response.data);
-      setChamado(response.data);
+      setChamados(response.data);
     } catch (error) {
-      console.log("Erro ao buscar Chamados", error);
+      console.error("Erro ao buscar Chamados:", error);
+    }
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    try {
+      const chamadoUrl = "http://localhost:3000/chamado";
+
+      const response = await fetch(chamadoUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+        body: JSON.stringify({ titulo, descricao }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao criar chamado");
+      }
+
+      const data = await response.json();
+
+      if (data.access_token) {
+        localStorage.setItem("access_token", data.access_token);
+      }
+
+      await loadChamados();
+      setTitulo("");
+      setDescricao("");
+
+      // router.push("/dashboard");
+    } catch (error) {
+      console.error("Erro ao criar chamado:", error);
     }
   }
 
@@ -63,8 +101,38 @@ export default function Chamados() {
       <h2 className={styles.title}>Lista de Chamados</h2>
       <button className={styles.buttonchamado}>Abrir Chamado</button>
       </div>
+
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <label>
+          Título:
+          <input
+            type="text"
+            value={titulo}
+            onChange={(e) => setTitulo(e.target.value)}
+            className={styles.input}
+            required
+          />
+        </label>
+
+        <label>
+          Descrição:
+          <textarea
+            value={descricao}
+            onChange={(e) => setDescricao(e.target.value)}
+            className={styles.textarea}
+            required
+          />
+        </label>
+
+        <button type="submit" className={styles.button}>
+          Criar Chamado
+        </button>
+      </form>
+
+      <h2 className={styles.title}>Lista de Chamados</h2>
+
       <div className={styles.grid}>
-        {chamado.map((item) => (
+        {chamados.map((item) => (
           <div key={item.id} className={styles.card}>
             <h3 className={styles.cardTitle}>#{item.id.slice(0, 4)}</h3>
             <p className={styles.cardDescription}>{item.descricao}</p>
