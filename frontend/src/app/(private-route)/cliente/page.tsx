@@ -97,7 +97,7 @@ export default function ClientesPage() {
                 {clients.map((client) => (
                     <li key={client.id} className={styles.item}>
                         <span className={styles.nomesC}>
-                            {client.name} - {client.email}
+                            {client.id.slice(0, 4)} - {client.name} - {client.email}
                         </span>
                         <div className={styles.acoes}>
                             <button
