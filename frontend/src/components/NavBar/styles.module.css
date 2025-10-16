@@ -2,65 +2,59 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #000000;
-    padding: 20px 50px;
+    background: #1f2937;
+    padding: 5px 50px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
 .logoArea {
     display: flex;
     align-items: center;
-    gap: 8px; 
 }
 
 .logoArea img {
-    width: 140px;
+    width: 180px;
     height: auto;
-    object-fit: contain; 
+    object-fit: contain;
 }
 
 .content {
     display: flex;
-    gap: 32px; 
+    flex-direction: row;
+    gap: 16px;
+    width: 50%;
+    margin-top: 80px;
+    min-width: 1080px;
 }
 
 .content a {
     display: flex;
     align-items: center;
-    gap: 8px; 
-    font-weight: 500;
-    font-size: 15px; 
-    color: #d1d5db;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+    font-size: 18px;
+    color: #e5e7eb;
     text-decoration: none;
-    transition: all 0.3s ease;
-    padding: 8px 12px; 
+    background-color: #4f46e5;
+    padding: 8px 12px;
     border-radius: 8px;
+    transition: all 0.3s ease;
+    width: 50%;
 }
 
 .content a:hover {
-    background: #2563eb;
+    background: #6366f1;
     color: #fff;
-    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
 }
 
 .selected {
-    background: #2563eb;
+    background: #3730a3;
     color: #ffffff;
-    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 2px 8px rgba(55, 48, 163, 0.4);
 }
 
 .selected:hover {
-    background: #1d4ed8;
-}
-
-.content {
-    flex-direction: row;
-    width: 50%;
-    gap: 16px; 
-    margin-top: 16px; 
-}
-
-.content a {
-    width: 50%;
-    justify-content: flex-start;
+    background: #312e81;
 }

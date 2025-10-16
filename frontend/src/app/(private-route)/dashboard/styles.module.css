@@ -1,0 +1,40 @@
+/* Container geral dos gráficos */
+.chartsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  /* Card do gráfico */
+  .chartCard {
+    background: #fff;
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 450px;
+    transition: all 0.3s ease;
+  }
+  
+  .chartCard:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* Título do gráfico */
+  .chartTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    text-align: center; /* centraliza o título */
+    margin-bottom: 1rem;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .chartCard {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+  
