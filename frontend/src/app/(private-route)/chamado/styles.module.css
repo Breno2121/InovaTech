@@ -1,43 +1,86 @@
 .container {
-  padding: 2rem;
-  background: #f5f7fa;
-  min-height: 70vh;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 20px auto;
+    background-color: #f1f1f1;
+    min-height: 70vh;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
 .title {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
-  color: #333;
+    font-size: 28px;
+    color: #1f2937;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.barrabutton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.buttonchamado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4f46e5;
+    min-height:50px;
+    min-width:260px;
+    text-align:center;
+    font-size: 18px;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.buttonchamado:hover{
+    background-color: #6366f1;
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+    gap: 32px;
 }
 
 .card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 180px;
+    cursor: pointer;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-14px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
 }
 
 .cardTitle {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #222;
+    font-size: 20px;
+    font-weight: 600;
+    color: #4f46e5;
+    margin-bottom: 8px;
 }
 
 .cardDescription {
-  font-size: 1rem;
-  color: #555;
+    font-size: 18px;
+    color: #374151;
+    margin-bottom: 6px;
+    word-wrap: break-word;
+}
+
+.cardDescription:last-child {
+    font-weight: 500;
+    color: #10b981;
 }

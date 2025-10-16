@@ -50,7 +50,7 @@
   .btn {
     width: 100%;
     height: 45px;
-    background: #fff;
+    background: #f1f1f1;
     border: none;
     outline: none;
     border-radius: 40px;
@@ -63,6 +63,6 @@
   }
 
   .btn:hover {
-    background: #f1f1f1;
+    background: #08a008;
   }
   

@@ -4,7 +4,6 @@ import styles from "./styles.module.css"
 import { usePathname } from "next/navigation"
 import { FaHome } from "react-icons/fa";
 import { BsPersonRaisedHand } from "react-icons/bs";
-import { LuTicketSlash } from "react-icons/lu";
 import { MdOutlinePhone } from "react-icons/md";
 import logo from '../../assets/inovatech.png'
 import Image from 'next/image'
@@ -14,14 +13,9 @@ export default function NavMenu() {
     
     const itens = [
         {
-            label: "Dashboard",
+            label: "Tela Principal",
             page: '/dashboard',
             icon: <FaHome />
-        },
-        {
-            label: "Atendimento",
-            page: '/atendimento',
-            icon: <LuTicketSlash />
         },
         {
             label: "Cliente",
