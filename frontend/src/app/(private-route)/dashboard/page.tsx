@@ -25,11 +25,9 @@ const data = [
 
 const COLORS = ["#ef4444", "#22c55e", "#3b82f6", "#eab308"];
 
-export default function Dashboard() {
+return (
   const total = data.reduce((sum, d) => sum + d.quantidade, 0);
-
-  return (
-    <div className="p-8 min-h-screen bg-gray-50 space-y-10">
+   <div className="p-8 min-h-screen bg-gray-50 space-y-10">
       <h1 className="text-4xl font-bold text-gray-800 text-center">
         Dashboard de Manutenção
       </h1>
@@ -99,3 +97,4 @@ export default function Dashboard() {
     </div>
   );
 }
+

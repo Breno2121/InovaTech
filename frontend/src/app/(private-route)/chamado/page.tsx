@@ -1,9 +1,8 @@
-"use client"; // <- adiciona essa linha no topo
-
+"use client";
+import { API } from "@/service/api";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
-import { API } from "@/service/api";
 
 interface Chamado {
   id: string;
@@ -13,9 +12,9 @@ interface Chamado {
   client: string;
 }
 
-export default function ChamadoPage() {
-  const router = useRouter();
-
+export default function Chamados() {
+  const [chamado, setChamado] = useState<chamado[]>([]);
+  const [newChamado, setNewChamado] = useState<chamado[]>([]);
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [chamados, setChamados] = useState<Chamado[]>([]);
@@ -58,20 +57,50 @@ export default function ChamadoPage() {
         localStorage.setItem("access_token", data.access_token);
       }
 
-      // Atualiza lista de chamados e limpa campos
       await loadChamados();
       setTitulo("");
       setDescricao("");
 
-      // router.push("/dashboard"); // opcional, se quiser redirecionar
+      // router.push("/dashboard");
     } catch (error) {
       console.error("Erro ao criar chamado:", error);
     }
   }
 
+  async function createChamado() {
+    const newChamado: chamado = {
+      titulo: titulo,
+      descricao: descricao,
+    }
+    try {
+      
+    } catch (error) {
+      console.log("Erro ao criar novo chamado", error)
+    }
+  }
+  async function createUser() {
+    const newUser: User = {
+      name: nome,
+      email: email,
+      password: senha,
+      birthDate: dataNascimento,
+    };
+    console.log(newUser);
+    try {
+      await API.post("/user/register", newUser);
+      alert("Usuário cadastrado com sucesso!");
+      router.push("/Login");
+    } catch (error) {
+      console.error("Erro ao registrar usuário:", error);
+      alert("Erro ao cadastrar. Verifique os dados.");
+    }
+
   return (
     <div className={styles.container}>
-      <h1 className={styles.titulo}>Abrir Chamado</h1>
+      <div className={styles.barrabutton}>
+      <h2 className={styles.title}>Lista de Chamados</h2>
+      <button className={styles.buttonchamado}>Abrir Chamado</button>
+      </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <label>
@@ -105,7 +134,6 @@ export default function ChamadoPage() {
       <div className={styles.grid}>
         {chamados.map((item) => (
           <div key={item.id} className={styles.card}>
-            {/* Ajustar ID para 4 caracteres */}
             <h3 className={styles.cardTitle}>#{item.id.slice(0, 4)}</h3>
             <p className={styles.cardDescription}>{item.descricao}</p>
             <p className={styles.cardDescription}>{item.status}</p>
