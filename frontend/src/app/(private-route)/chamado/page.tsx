@@ -1,8 +1,7 @@
 "use client";
-
-import { API } from "@/service/api";
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
+import { API } from "@/service/api";
 
 interface Chamado {
   id: string;
@@ -10,6 +9,7 @@ interface Chamado {
   descricao: string;
   status: string;
   client: string;
+  manutencao: string;
 }
 
 export default function Chamados() {
@@ -38,7 +38,6 @@ export default function Chamados() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-
     try {
       const payload = {
         titulo,
@@ -47,7 +46,6 @@ export default function Chamados() {
         clientId,
         manutencao,
       };
-
       await API.post("/chamado/register", payload);
       setShowModal(false);
       await loadChamados();
@@ -58,6 +56,7 @@ export default function Chamados() {
       setClientId("");
       setManutencao("");
     } catch (error) {
+      console.log()
       console.error("Erro ao criar chamado:", error);
       alert("Erro ao criar chamado.");
     } finally {
@@ -68,7 +67,10 @@ export default function Chamados() {
   return (
     <div className={styles.container}>
       <div className={styles.barraButton}>
-        <button className={styles.buttonChamado} onClick={() => setShowModal(true)}>
+        <button
+          className={styles.buttonChamado}
+          onClick={() => setShowModal(true)}
+        >
           Abrir Chamado
         </button>
       </div>
@@ -90,7 +92,10 @@ export default function Chamados() {
       </div>
 
       {showModal && (
-        <div className={styles.modalOverlay} onClick={() => setShowModal(false)}>
+        <div
+          className={styles.modalOverlay}
+          onClick={() => setShowModal(false)}
+        >
           <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
             <h2 className={styles.title}>Novo Chamado</h2>
 
@@ -157,7 +162,11 @@ export default function Chamados() {
               </label>
 
               <div className={styles.modalActions}>
-                <button type="submit" className={styles.button} disabled={loading}>
+                <button
+                  type="submit"
+                  className={styles.button}
+                  disabled={loading}
+                >
                   {loading ? "Criando..." : "Criar Chamado"}
                 </button>
                 <button

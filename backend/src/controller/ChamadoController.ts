@@ -4,7 +4,7 @@ import { chamadoService } from "../service/ChamadoService";
 export async function chamadoController(app: FastifyInstance) {
     app.post("/chamado/register", async (request: FastifyRequest, reply: FastifyReply) => {
         const body = request.body as CreateChamadoType;
-
+        console.log("Body recebido:", request)
         try {
             await chamadoService.register(body)
             return reply.code(201).send();

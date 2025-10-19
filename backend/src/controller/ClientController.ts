@@ -7,10 +7,8 @@ export function clientController(app: FastifyInstance) {
 
         try {
             await clientService.register(body)
-            console.log("no 300")
             return reply.code(201).send();
         } catch (error: any) {
-            console.log("no 310")
             return reply.code(400).send({erro: error.message})
         }
     })

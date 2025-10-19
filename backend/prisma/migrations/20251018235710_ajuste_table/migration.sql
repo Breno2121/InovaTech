@@ -26,6 +26,7 @@ CREATE TABLE "public"."chamado" (
     "descricao" TEXT NOT NULL,
     "status" TEXT NOT NULL,
     "clientId" TEXT NOT NULL,
+    "manutencao" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "chamado_pkey" PRIMARY KEY ("id")
