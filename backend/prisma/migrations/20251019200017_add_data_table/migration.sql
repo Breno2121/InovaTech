@@ -15,6 +15,8 @@ CREATE TABLE "public"."client" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "cpf" TEXT NOT NULL,
+    "phone" TEXT NOT NULL,
 
     CONSTRAINT "client_pkey" PRIMARY KEY ("id")
 );
@@ -38,5 +40,8 @@ CREATE UNIQUE INDEX "users_email_key" ON "public"."users"("email");
 -- CreateIndex
 CREATE UNIQUE INDEX "client_email_key" ON "public"."client"("email");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "client_cpf_key" ON "public"."client"("cpf");
+
 -- AddForeignKey
-ALTER TABLE "public"."chamado" ADD CONSTRAINT "chamado_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "public"."users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."chamado" ADD CONSTRAINT "chamado_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "public"."client"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

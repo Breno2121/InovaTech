@@ -7,13 +7,6 @@
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
   }
   
-  .titulo {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
   .form {
     display: flex;
     flex-direction: column;
@@ -99,7 +92,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 180px;
+    height: 192px;
     cursor: pointer;
 }
 
