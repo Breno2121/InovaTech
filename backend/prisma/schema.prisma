@@ -8,21 +8,23 @@ datasource db {
 }
 
 model User {
-  id        String    @id
+  id        String   @id
   name      String
-  email     String    @unique
+  email     String   @unique
   password  String
   createdAt DateTime
-  updatedAt DateTime  @updatedAt
-  Chamado   Chamado[]
+  updatedAt DateTime @updatedAt
 
   @@map("users")
 }
 
 model Client {
-  id    String @id
-  name  String
-  email String @unique
+  id      String    @id
+  name    String
+  email   String    @unique
+  cpf     String    @unique
+  phone   String
+  Chamado Chamado[]
 
   @@map("client")
 }
@@ -34,7 +36,7 @@ model Chamado {
   status     String
   clientId   String
   manutencao String
-  client     User     @relation(fields: [clientId], references: [id])
+  client     Client   @relation(fields: [clientId], references: [id])
   createdAt  DateTime
 
   @@map("chamado")

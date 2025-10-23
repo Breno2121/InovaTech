@@ -34,10 +34,10 @@ export function clientController(app: FastifyInstance) {
 
     app.patch("/cliente/update/:id", async (request: FastifyRequest, reply: FastifyReply) => {
         const { id } = request.params as { id: string }
-        const { name, email } = request.body as { name: string, email: string }
+        const { name, email, cpf, phone } = request.body as CreateClientType
 
         try {
-            const client = await clientService.updateClientId(id, name, email);
+            const client = await clientService.updateClientId(id, name, email, cpf, phone);
             return reply.code(200).send(client);
         } catch (error: any) {
             return reply.code(401).send({ erro: error.message })
@@ -51,7 +51,7 @@ export function clientController(app: FastifyInstance) {
             await clientService.deleteClient(id)
             return reply.code(200).send("Cliente excluido com sucesso!")
         } catch (error: any) {
-            console.log("erro aoexlcuir cliente: ", error)
+            console.log("erro ao excluir cliente: ", error)
             return reply.code(500).send({erro: error.message})
         }
     })

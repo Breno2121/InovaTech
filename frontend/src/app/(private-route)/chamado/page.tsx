@@ -84,8 +84,10 @@ export default function Chamados() {
           chamados.map((item) => (
             <div key={item.id} className={styles.card}>
               <h3 className={styles.cardTitle}>#{item.id.slice(0, 4)}</h3>
+              <p className={styles.cardDescription}>{item.titulo}</p>
               <p className={styles.cardDescription}>{item.descricao}</p>
               <p className={styles.cardDescription}>{item.status}</p>
+              <p className={styles.cardDescription}>{item.manutencao}</p>
             </div>
           ))
         )}
