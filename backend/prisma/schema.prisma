@@ -12,11 +12,13 @@ model User {
   name      String
   email     String   @unique
   password  String
+  birthDate DateTime?
   createdAt DateTime
   updatedAt DateTime @updatedAt
 
   @@map("users")
 }
+
 
 model Client {
   id      String    @id
