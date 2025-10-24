@@ -21,25 +21,40 @@ model User {
 
 
 model Client {
-  id      String    @id
-  name    String
-  email   String    @unique
-  cpf     String    @unique
-  phone   String
-  Chamado Chamado[]
+  id         String       @id
+  name       String
+  email      String       @unique
+  cpf        String       @unique
+  phone      String
+  Chamado    Chamado[]
+  Comentario Comentario[]
 
   @@map("client")
 }
 
 model Chamado {
-  id         String   @id
+  id         String       @id
   titulo     String
   descricao  String
   status     String
   clientId   String
   manutencao String
-  client     Client   @relation(fields: [clientId], references: [id])
+  client     Client       @relation(fields: [clientId], references: [id])
   createdAt  DateTime
+  Comentario Comentario[]
 
   @@map("chamado")
+}
+
+model Comentario {
+  id        String   @id
+  chamadoId String
+  content   String
+  clientId  String
+  createdAt DateTime
+  updatedAt DateTime @updatedAt
+  chamado   Chamado  @relation(fields: [chamadoId], references: [id])
+  client    Client   @relation(fields: [clientId], references: [id])
+
+  @@map("comentario")
 }

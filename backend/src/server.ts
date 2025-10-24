@@ -7,6 +7,7 @@ import { userController } from "./controller/UserController";
 import authJwt from "./middleware/authJwt";
 import { chamadoController } from "./controller/ChamadoController";
 import { clientController } from "./controller/ClientController";
+import { comentarioController } from "./controller/ComentarioController";
 
 const app = fastify();
 
@@ -22,6 +23,7 @@ app.register(authJwt)
 app.register(userController)
 app.register(chamadoController)
 app.register(clientController)
+app.register(comentarioController)
 
 const PORT = 3333;
 app.listen({ port: PORT }).then(() => {
