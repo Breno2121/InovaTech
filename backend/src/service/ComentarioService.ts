@@ -2,12 +2,12 @@ import { Comentario } from "@prisma/client";
 import { prisma } from "../prisma/client";
 
 class ComentarioService {
-    public async registerComentario({ chamadoId, content, clientId, created_at, updated_at }: CreateComentarioType): Promise<void> {
+    public async registerComentario({ chamadoId, content, emailClient, created_at, updated_at }: CreateComentarioType): Promise<void> {
         const comentario: Comentario = {
             id: crypto.randomUUID(),
             chamadoId,
             content,
-            clientId,
+            emailClient,
             createdAt: new Date(),
             updatedAt: new Date()
         };
@@ -16,18 +16,18 @@ class ComentarioService {
             data: comentario
         });
     }
-    public async getAllComentarios() {
-        const comentarios = await prisma.comentario.findMany({
-            include: {
-                client: true
-            }
-        });
+    public async getAllComentarios(chamadoId: string) {
+        const comentarios = await prisma.comentario.findMany({ where: { chamadoId } });
         return comentarios;
     }
 
-    public async getComentarioId(id: string) {
-        const comentario = await prisma.comentario.findUnique({ where: { id } })
-        return comentario
+    // public async getComentarioId(chamadoId: string) {
+    //     const comentario = await prisma.comentario.findMany({ where: { chamadoId } })
+    //     return comentario
+    // }
+    
+    public async deleteComentarioId(id: string) {
+        return await prisma.comentario.delete({ where: { id } })
     }
 }
 

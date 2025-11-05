@@ -4,7 +4,8 @@ import { chamadoService } from "../service/ChamadoService";
 export async function chamadoController(app: FastifyInstance) {
     app.post("/chamado/register", async (request: FastifyRequest, reply: FastifyReply) => {
         const body = request.body as CreateChamadoType;
-        console.log("Body recebido:", request)
+        // console.log("Body recebido:", body)
+
         try {
             await chamadoService.register(body)
             return reply.code(201).send();
@@ -31,4 +32,16 @@ export async function chamadoController(app: FastifyInstance) {
             return reply.code(401).send({ erro: error.message })
         }
     })
+
+    app.patch("/chamado/update/:id", async (request: FastifyRequest, reply: FastifyReply) => {
+            const { id } = request.params as { id: string }
+            const { status } = request.body as CreateChamadoType
+    
+            try {
+                const chamado = await chamadoService.updateStatusChamado(id, status);
+                return reply.code(200).send(chamado);
+            } catch (error: any) {
+                return reply.code(401).send({ erro: error.message })
+            }
+        })
 }
