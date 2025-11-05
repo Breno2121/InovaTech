@@ -1,7 +1,7 @@
 type CreateComentarioType = {
     chamadoId: string,
     content: string,
-    clientId: string,
+    emailClient: string,
     created_at: Date,
     updated_at: Date
 }

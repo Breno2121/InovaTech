@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { API } from "@/service/api";
 
@@ -93,7 +93,7 @@ export default function ClientesPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.barraButon}>
+      <div className={styles.buttonbarra}>
         <button
           className={styles.buttonClient}
           onClick={() => setShowModal(true)}
@@ -101,7 +101,7 @@ export default function ClientesPage() {
           Novo Cliente
         </button>
       </div>
-      <h2 className={styles.titulo}>CRUD de Clientes</h2>
+      <h2 className={styles.titulo}>Clientes</h2>
 
       <div className={styles.grid}>
         {clients.length === 0 ? (
@@ -109,7 +109,7 @@ export default function ClientesPage() {
         ) : (
           clients.map((client) => (
             <div key={client.id} className={styles.card}>
-              <h3 className={styles.cardTitle}>#{client.id.slice(0, 4)}</h3>
+              <h3 className={styles.cardTitle}>#{client.id.slice(0, 6)}</h3>
               <p className={styles.cardDescription}>Nome: {client.name}</p>
               <p className={styles.cardDescription}>Email: {client.email}</p>
               <p className={styles.cardDescription}>Cpf: {client.cpf}</p>
@@ -139,7 +139,7 @@ export default function ClientesPage() {
       {showModal && (
         <div className={styles.modalOverlay} onClick={() => setShowModal(true)}>
           <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-            <h2 className={styles.title}>Novo Chamado</h2>
+            <h2 className={styles.title}>Novo Cliente</h2>
 
             <form className={styles.form} onSubmit={register}>
               <label>
@@ -187,13 +187,20 @@ export default function ClientesPage() {
                 <button
                   onClick={editingId ? updateClient : register}
                   className={styles.button}
+                  disabled={!name || !email || !cpf || !phone}
                 >
-                  {editingId ? "Atualizar" : "Adicionar cliente"}
+                  Salvar
                 </button>
                 <button
                   type="button"
                   className={styles.cancelButton}
-                  onClick={() => setShowModal(false)}
+                  onClick={() => {
+                    setShowModal(false);
+                    setName("");
+                    setEmail("");
+                    setCpf("");
+                    setPhone("");
+                  }}
                 >
                   Cancelar
                 </button>
