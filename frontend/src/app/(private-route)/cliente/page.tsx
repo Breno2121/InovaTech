@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { API } from "@/service/api";
+import { CiEdit } from "react-icons/ci";
+import { MdDeleteOutline } from "react-icons/md";
 
 interface Client {
   id: string;
@@ -34,7 +36,8 @@ export default function ClientesPage() {
     }
   }
 
-  async function register() {
+  async function register(e: React.FormEvent) {
+    e.preventDefault();
     try {
       const payload = {
         name,
@@ -54,7 +57,8 @@ export default function ClientesPage() {
     }
   }
 
-  async function updateClient() {
+  async function updateClient(e: React.FormEvent) {
+      e.preventDefault();
     if (!editingId) return;
     setShowModal(true);
 
@@ -109,7 +113,7 @@ export default function ClientesPage() {
         ) : (
           clients.map((client) => (
             <div key={client.id} className={styles.card}>
-              <h3 className={styles.cardTitle}>#{client.id.slice(0, 6)}</h3>
+              <h3 className={styles.cardTitle}>#{client.id.slice(0, 4)}</h3>
               <p className={styles.cardDescription}>Nome: {client.name}</p>
               <p className={styles.cardDescription}>Email: {client.email}</p>
               <p className={styles.cardDescription}>Cpf: {client.cpf}</p>
@@ -122,13 +126,13 @@ export default function ClientesPage() {
                   }}
                   className={styles.btnEditar}
                 >
-                  Editar
+                  <CiEdit size={28} />
                 </button>
                 <button
                   onClick={() => excluir(client.id)}
                   className={styles.btnExcluir}
                 >
-                  Excluir
+                  <MdDeleteOutline size={28} />
                 </button>
               </div>
             </div>

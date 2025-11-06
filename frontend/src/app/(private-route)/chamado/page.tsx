@@ -2,6 +2,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { API } from "@/service/api";
+import { FaComments } from "react-icons/fa";
+import { IoReturnDownForwardOutline } from "react-icons/io5";
+import { LuCircleCheckBig } from "react-icons/lu";
+import { GiInfo } from "react-icons/gi";
 
 interface Chamado {
   id: string;
@@ -32,7 +36,6 @@ export default function Chamados() {
   const [modalComentario, setModalComentario] = useState(false);
   const [comentario, setComentario] = useState("");
   const [comentarioDetalhado, setComentarioDetalhado] = useState<Comentario[]>([]);
-  // const [comentarioLoad, setLoadComentarios] = useState<Comentario[]>([]);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [conteudo, setConteudo] = useState<"chamados" | "detalhes">("chamados");
@@ -128,16 +131,6 @@ export default function Chamados() {
     }
   }
 
-  // async function getComentariosId(id: string) {
-  //   try {
-  //     const response = await API.get(`/comentario/busca/${id}`);
-  //     console.log(response.data);
-  //     setComentarioDetalhado(response.data);
-  //   } catch (error) {
-  //     console.error("Erro ao buscar comentarios:", error);
-  //   }
-  // }
-
   async function deleteComentario(id: string, chamadoId:string) {
     try {
       await API.delete(`/comentario/delete/${id}`);
@@ -183,7 +176,7 @@ export default function Chamados() {
                         setConteudo("detalhes");
                       }}
                     >
-                      detalhes
+                      <GiInfo size={28} />
                     </button>
                   </div>
                 </div>
@@ -292,7 +285,7 @@ export default function Chamados() {
 
               <div className={styles.detalheInfo}>
                 <p>
-                  <strong>ID:</strong> #{chamadoDetalhado.id}
+                  <strong>ID:</strong> {chamadoDetalhado.id}
                 </p>
                 <p>
                   <strong>Título:</strong> {chamadoDetalhado.titulo}
@@ -319,7 +312,7 @@ export default function Chamados() {
                     {comentarioDetalhado.map((item) => (
                       <div key={item.id} className={styles.card}>
                         <h3 className={styles.cardTitle}>
-                          #{item.id.slice(0, 4)}
+                          {item.id.slice(0, 4)}
                         </h3>
                         <p>
                           <strong>Descrição:</strong>
@@ -344,13 +337,14 @@ export default function Chamados() {
                 <button
                   className={styles.buttonsComentario}
                 >
-                  Finalizar Chamado
+                  <LuCircleCheckBig size={32} />
                 </button>
                 <button
                   className={styles.buttonsComentario}
                   onClick={() => setModalComentario(true)}
                 >
-                  Comentar
+                  <FaComments size={32} />
+                    
                 </button>
                 <button
                   className={styles.buttonsComentario}
@@ -359,7 +353,8 @@ export default function Chamados() {
                     loadChamados();
                   }}
                 >
-                  Voltar
+                  <IoReturnDownForwardOutline size={38} />
+                  
                 </button>
               </footer>
             </div>
