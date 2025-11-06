@@ -16,20 +16,15 @@ class ComentarioService {
             data: comentario
         });
     }
+
     public async getAllComentarios(chamadoId: string) {
         const comentarios = await prisma.comentario.findMany({ where: { chamadoId } });
         return comentarios;
     }
 
-    // public async getComentarioId(chamadoId: string) {
-    //     const comentario = await prisma.comentario.findMany({ where: { chamadoId } })
-    //     return comentario
-    // }
-    
     public async deleteComentarioId(id: string) {
         return await prisma.comentario.delete({ where: { id } })
     }
 }
-
 
 export const comentarioService = new ComentarioService();

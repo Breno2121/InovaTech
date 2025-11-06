@@ -1,7 +1,6 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { comentarioService } from "../service/ComentarioService";
 
-
 export async function comentarioController(app: FastifyInstance) {
     app.post("/comentario/register", async (request: FastifyRequest, reply: FastifyReply) => {
         const body = request.body as CreateComentarioType;
@@ -15,7 +14,6 @@ export async function comentarioController(app: FastifyInstance) {
         }
     })
 
-    //Rota de buscar todos os comentario de um chamado especifico
     app.get("/comentario/getAll/:chamadoId", async (request: FastifyRequest, reply: FastifyReply) => {
         const { chamadoId } = request.params as { chamadoId: string };
         try {
@@ -25,16 +23,6 @@ export async function comentarioController(app: FastifyInstance) {
             return reply.code(401).send({ erro: error.message })
         }
     })
-
-    // app.get("/comentario/busca/:id", async (request: FastifyRequest, reply: FastifyReply) => {
-    //     const { id } = request.params as { id: string }
-    //     try {
-    //         const comentario = await comentarioService.getComentarioId(id);
-    //         return reply.code(200).send(comentario);
-    //     } catch (error: any) {
-    //         return reply.code(401).send({ erro: error.message })
-    //     }
-    // })
 
     app.delete("/comentario/delete/:id", async (request: FastifyRequest, reply: FastifyReply) => {
             const { id } = request.params as { id: string }
