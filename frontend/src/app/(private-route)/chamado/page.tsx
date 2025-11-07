@@ -85,16 +85,19 @@ export default function Chamados() {
     }
   }
 
-    async function updateStatusChamado(id: string) {
+    async function updateStatusChamado(id: string, status: string) {
     const updateChamado = {
       titulo,
       descricao,
-      status: "Em andamento",
+      status: status,
       emailClient,
       manutencao,
     };
     try {
       await API.patch(`/chamado/update/${id}`, updateChamado);
+      if(updateChamado.status === "Finalizado") {
+        alert("Finalizado chamado com sucesso!")
+      }
     } catch (error) {
       console.error("Erro ao atualizar status chamado:", error);
     }
@@ -169,8 +172,9 @@ export default function Chamados() {
                   <div className={styles.barraButtonDetalhes}>
                     <button
                       className={styles.buttonDetalhes}
+                      disabled={item.status === "Finalizado"}
                       onClick={() => {
-                        updateStatusChamado(item.id);
+                        updateStatusChamado(item.id, "Em andamento");
                         getChamadoId(item.id);
                         loadComentariosId(item.id);
                         setConteudo("detalhes");
@@ -322,12 +326,6 @@ export default function Chamados() {
                           <strong>Cliente: </strong>
                           {item.emailClient}
                         </p>
-                        <button
-                          onClick={() => deleteComentario(item.id, item.chamadoId)}
-                          className={styles.btnExcluir}
-                        >
-                          Excluir
-                        </button>
                       </div>
                     ))}
                   </>
@@ -336,6 +334,7 @@ export default function Chamados() {
               <footer className={styles.footer}>
                 <button
                   className={styles.buttonsComentario}
+                  onClick={() => {updateStatusChamado(chamadoDetalhado.id, "Finalizado")}}
                 >
                   <LuCircleCheckBig size={32} />
                 </button>

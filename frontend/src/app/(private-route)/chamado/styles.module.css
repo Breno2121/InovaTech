@@ -118,9 +118,11 @@
 
 .cardDescription {
   font-size: 18px;
-  color: #374151;
+  color: #1c1f25;
   margin-bottom: 6px;
   word-wrap: break-word;
+  background-color: #f1f1f1;
+  border-radius: 8px;
 }
 
 .cardDescription:last-child {
