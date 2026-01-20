@@ -10,7 +10,6 @@ import Image from 'next/image'
 
 export default function NavMenu() {
     const pathName = usePathname();
-    
     const itens = [
         {
             label: "Tela Principal",
